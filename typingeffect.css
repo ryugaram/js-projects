@@ -1,0 +1,32 @@
+@import "reset.css";
+
+@keyframes cursor{
+	50%{border-color: transparent;}
+}
+
+.container
+{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.text{
+	
+	display: inline;/*table-cell; vertical-align: middle;*/
+	border-right: .05em solid white;
+	animation: cursor 0.6s ease infinite;
+}
+
+body{
+	height: 100vh;
+	background-color: black;
+	color: white;
+	font-size: 100px;
+}
+
+.text.no {
+
+	border-right:0;
+	animation:0;
+}
