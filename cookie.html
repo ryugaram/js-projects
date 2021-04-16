@@ -1,0 +1,95 @@
+<!-- 라이브 서버 alt l alt o -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookie</title>
+    <style>
+        .popup{
+            position: fixed;
+            left: 100px;
+            top:100px;
+            border: 1px solid brown;
+            padding: 40px 60px;
+            text-align: center;
+            background-color: chartreuse;
+        }
+        body{
+            background-color: black;
+            color: white;
+        }
+       
+    </style>
+</head>
+<body>
+    <h3>아무글</h3>
+    <div class="popup">
+        <h2>반가워요</h2>
+        <button class="oneDayPopup">하루 안보기</button>
+        <button class="close">닫기</button>
+
+     
+    
+    <script>
+
+        const popup=document.querySelector('.popup');
+        const oneDayPopup=document.querySelector(".oneDayPopup");
+        const close=document.querySelector(".close");
+      
+
+        setCookie=(name,value,day)=>{
+            const date=new Date();
+            date.setDate(date.getDate()+ day);
+
+            let mycookie="";
+            mycookie+=name+'='+value+';';
+            mycookie+='Expires='+date.toUTCString();
+            document.cookie=mycookie;
+        }
+        delCookie=(name)=>{
+            const date=new Date();
+            date.setDate(date.getDate()-1);
+            let setCookie='';
+            setCookie+=name+'=Main;';
+            setCookie+='Expires='+date.toUTCString();
+            document.cookie=setCookie;
+        }
+        checkCookie=(name)=>{
+            let cookies=document.cookie.split(';');
+            console.log(cookies);
+            let visited=false;
+
+            for(let i in cookies){
+                if(cookies[i].indexOf(name)>-1){
+                    visited=true;
+                }
+            }
+            if(visited){
+                popup.style.display='none';
+              
+                
+            }else{
+                popup.style.display='block';
+               
+            }
+        }
+
+        oneDayPopup.addEventListener('click',()=>{
+            setCookie('ryu','main',1);
+            popup.style.display='none';
+    
+        })
+        close.addEventListener('click',()=>{
+            popup.style.display='none';
+            delCookie('ryu');
+        })
+      
+        checkCookie('ryu');
+     
+
+        
+    </script>
+</body>
+</html>
